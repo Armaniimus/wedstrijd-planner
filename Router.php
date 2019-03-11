@@ -19,10 +19,7 @@ class Router {
      * @return string/bool a string is returned or false is returned if there was an error
      */
     public function run() {
-        //if no errors encountered return results
-        if ($result = $this->determineDestination()) {
-            return $result;
-        }
+        return $this->determineDestination();
     }
 
     /**
@@ -46,7 +43,7 @@ class Router {
      * @return string a return to be given back to index.php
      */
     private function sendToDestination() {
-        $ctrlName   = $this->controller . '_Controller';
+        $ctrlName   = $this->controller . '_controller';
         $ctrlPath   = "Controller/$ctrlName.php";
         $method     = $this->method;
         $params     = $this->params;
@@ -58,23 +55,20 @@ class Router {
                 require_once "$ctrlPath";
                 $controller = new $ctrlName();
 
-                if (isset($params[0])) {
-                    if ($params[0]) {
-                        return $controller->$method($params);
-                    }
-                }
-
                 if (isset($method)) {
-                    if (!method_exists($this->controller, $method) ) {
+                    if (method_exists($ctrlName, $method) ) {
+                        if (isset($params[0])) {
+                            if ($params[0]) {
+                                return $controller->$method($params);
+                            }
+                        }
                         return $controller->$method();
                     }
                 }
 
             }
-
-        } else {
-            return false;
         }
+        return false;
     }
 }
 
