@@ -1,0 +1,44 @@
+html,
+body {
+    margin: 0px;
+    width: 100%;
+    display: block;
+    padding: 0px;
+    position: relative;
+}
+
+body {
+    top: -16px;
+}
+
+header {
+    background-color: darkblue;
+    display: block;
+    height: 60px;
+}
+
+main {
+    margin: 15px;
+}
+
+
+.main-nav ul {
+    list-style: none;
+}
+
+.main-nav ul li{
+    margin-top: 19px;
+    float: left;
+    padding: 0 5px;
+}
+
+.main-nav ul li a {
+    padding: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.main-nav ul li a:hover {
+    color: lightblue;
+}
